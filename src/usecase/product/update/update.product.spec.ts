@@ -40,7 +40,6 @@ describe("should update a product", () => {
       ...input,
       id: "wrong",
     };
-    console.log("inputWithWrongId", inputWithWrongId);
 
     await expect(usecase.execute(inputWithWrongId)).rejects.toThrow(
       "Product not found"

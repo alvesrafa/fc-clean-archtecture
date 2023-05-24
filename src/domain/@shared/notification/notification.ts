@@ -19,12 +19,13 @@ export default class Notification {
   }
 
   messages(context?: string): string {
-    let message = "";
-    this.errors.forEach((error) => {
+    let message = this.errors.reduce((msg, error) => {
       if (context === undefined || error.context === context) {
-        message += `${error.context}: ${error.message},`;
+        msg += `${error.context}: ${error.message},`;
       }
-    });
+      return msg;
+    }, "");
+
     return message;
   }
 }

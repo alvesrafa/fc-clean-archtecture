@@ -5,16 +5,12 @@ import ProductModel from "./product.model";
 export default class ProductRepository implements ProductRepositoryInterface {
   async create(entity: Product): Promise<void> {
     try {
-      console.log("Vai criar", entity.id, entity.name, entity.price);
       await ProductModel.create({
         id: entity.id,
         name: entity.name,
         price: entity.price,
       });
-
-      console.log("CRIOU NADAAA");
     } catch (error) {
-      console.log("error", error);
       throw error;
     }
   }

@@ -13,7 +13,7 @@ export class UpdateProductUseCase {
 
   async execute(input: InputUpdateProductDto): Promise<OutputUpdateProductDto> {
     const product = await this.productRepository.find(input.id);
-    console.log("product", product);
+
     if (!product) throw new Error("Product not found");
 
     product.changeName(input.name);
