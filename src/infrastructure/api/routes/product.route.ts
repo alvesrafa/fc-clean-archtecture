@@ -17,7 +17,6 @@ productRoute.post("/", async (req: Request, res: Response) => {
 
     res.send(output);
   } catch (err) {
-    console.log("err", err);
     res.status(500).send(err);
   }
 });

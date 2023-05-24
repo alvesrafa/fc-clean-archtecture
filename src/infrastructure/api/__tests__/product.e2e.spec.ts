@@ -15,7 +15,6 @@ describe("E2E test for product", () => {
       name: "Product",
       price: 100,
     });
-    console.log({ a: response.status });
 
     expect(response.status).toBe(200);
     expect(response.body.name).toBe("Product");
