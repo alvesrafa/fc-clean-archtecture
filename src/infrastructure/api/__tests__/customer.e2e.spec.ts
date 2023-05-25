@@ -1,5 +1,5 @@
-import { app, sequelize } from "../express";
 import request from "supertest";
+import { app, sequelize } from "../express";
 
 describe("E2E test for customer", () => {
   beforeEach(async () => {
@@ -76,12 +76,14 @@ describe("E2E test for customer", () => {
     expect(customer2.address.street).toBe("Street 2");
 
     const listResponseXML = await request(app)
-    .get("/customer")
-    .set("Accept", "application/xml")
-    .send();
+      .get("/customer")
+      .set("Accept", "application/xml")
+      .send();
 
     expect(listResponseXML.status).toBe(200);
-    expect(listResponseXML.text).toContain(`<?xml version="1.0" encoding="UTF-8"?>`);
+    expect(listResponseXML.text).toContain(
+      `<?xml version="1.0" encoding="UTF-8"?>`
+    );
     expect(listResponseXML.text).toContain(`<customers>`);
     expect(listResponseXML.text).toContain(`<customer>`);
     expect(listResponseXML.text).toContain(`<name>John</name>`);
@@ -95,8 +97,5 @@ describe("E2E test for customer", () => {
     expect(listResponseXML.text).toContain(`<name>Jane</name>`);
     expect(listResponseXML.text).toContain(`<street>Street 2</street>`);
     expect(listResponseXML.text).toContain(`</customers>`);
-    
-
-    
   });
 });
